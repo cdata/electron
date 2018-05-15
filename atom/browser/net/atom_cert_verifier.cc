@@ -88,7 +88,7 @@ class CertVerifierRequest : public AtomCertVerifier::Request {
 
   void OnDefaultVerificationDone(int error) {
     error_ = error;
-    std::unique_ptr<VerifyRequestParams> request(new VerifyRequestParams());
+    auto request = std::make_unique<VerifyRequestParams>();
     request->hostname = params_.hostname();
     request->default_result = net::ErrorToString(error);
     request->error_code = error;
